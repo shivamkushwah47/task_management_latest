@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
@@ -14,6 +18,7 @@ import 'package:task_management_app/core/routes.dart';
 
 class CreateTaskController extends GetxController {
   var selectedDate = DateTime.now().obs;
+
   // RxBool checkedValue = false.obs;
   final Rxn<int> checkedValue = Rxn<int>();
   final GlobalKey<FormState> taskFormKey = GlobalKey<FormState>();
@@ -123,7 +128,8 @@ class CreateTaskController extends GetxController {
     print('$Alluser');
   }
 
-  Future gotoCreateTask(context) async {
+///create task function
+  Future gotoCreateTask(context, [url]) async {
     if (taskFormKey.currentState!.validate()) {
       Loader.showLoader(context);
       if (!(await InternetConnectionChecker().hasConnection)) {
@@ -143,7 +149,8 @@ class CreateTaskController extends GetxController {
                       desccontroller.text,
                       selecteduser,
                       selectedPriority,
-                      summarycontroller.text)
+                      summarycontroller.text,
+                      url)
                   .then((value) => {
                         FireBase.sendNotification(sendToInfo)
 
@@ -159,10 +166,10 @@ class CreateTaskController extends GetxController {
             });
       }
     }
-  }
+  }  ///<-----
 
+  ///--->save info to notify the user
   var sendToInfo = [];
-
   Future sendTo() {
     print("this is selected user $selecteduser");
     return FirebaseFirestore.instance
@@ -185,8 +192,42 @@ class CreateTaskController extends GetxController {
         }
       }
     });
+  }   ///<-----
+
+  ///---> file attachment part
+  RxBool fileAttached = false.obs;
+  PlatformFile? pickedFile;
+  UploadTask? uploadTask;
+
+  Future AttachFile() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    if (result == null) return;
+
+    if (result != null) {
+      pickedFile = result.files.first;
+      print("s2hvi  ${pickedFile!.path!}");
+      print("s2hvi  ${pickedFile!.name!}");
+      return pickedFile;
+    }
   }
 
-//end
-}
+  Future<String> uploadFile() async {
+    final path = 'files/${pickedFile!.name}';
+    final file = File(pickedFile!.path!);
 
+    final ref = FirebaseStorage.instance.ref().child(path);
+    uploadTask = ref.putFile(file);
+
+    final snapshot = await uploadTask!.whenComplete(() {});
+
+    final urlDownload = await snapshot.ref.getDownloadURL();
+
+    print("Download link ${urlDownload}");
+
+    return urlDownload;
+  }
+  ///<-----
+
+
+
+}

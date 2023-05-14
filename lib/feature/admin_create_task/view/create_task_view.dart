@@ -103,14 +103,13 @@ class CreateTaskView extends GetView<CreateTaskController> {
                             height: Get.height * 0.03,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment
-                                  .spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [],
                             ),
                           ),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                                EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                             child: TextFormField(
                               // controller: _Titlecontroller,
                               cursorColor: Colors.white,
@@ -141,7 +140,7 @@ class CreateTaskView extends GetView<CreateTaskController> {
                           ),
                           Padding(
                             padding:
-                            EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                                EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
                             child: TextFormField(
                               // controller: _Titlecontroller,
                               cursorColor: Colors.white,
@@ -177,220 +176,256 @@ class CreateTaskView extends GetView<CreateTaskController> {
                   Positioned(
                     top: Get.height * .25,
                     width: Get.width * 1,
-                    height: Get.height * .690,
+                    height: Get.height * .56,
                     child: Container(
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
+                          border: Border.all(width: 2, color: Colors.blue),
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
                               topRight: Radius.circular(30)),
                           color: Colors.white,
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(15.0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: Get.width * 0.04),
                           child: Column(
                             children: [
-                          SizedBox(
-                          height: Get.height * 0.01,
-                          ),
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
                               SizedBox(
-                                  width: 140,
-                                  child: DropdownSearch<String>(
-                                    popupProps: PopupProps.menu(
-                                      showSelectedItems: true,
-                                      disabledItemFn: (String s) =>
-                                          s.startsWith('I'),
-                                    ),
-                                    items:
-                                    FireBase.userInfo['role'] == "admin"
-                                        ? controller.Alluser
-                                        : controller.userlist,
-                                    dropdownDecoratorProps:
-                                    DropDownDecoratorProps(
-                                      dropdownSearchDecoration:
-                                      InputDecoration(
-                                        labelText: "Asignee",
-                                        hintText: "select name",
-                                      ),
-                                    ),
-                                    onChanged: (value) {
-                                      controller.selecteduser = value;
-                                    },
-                                  )),
-                              SizedBox(
-                                width: 140,
-                                child: DropdownSearch<String>(
-                                  popupProps: PopupProps.menu(
-                                    showSelectedItems: true,
-                                  ),
-                                  items: controller.priorityItems,
-                                  dropdownDecoratorProps:
-                                  DropDownDecoratorProps(
-                                    dropdownSearchDecoration:
-                                    InputDecoration(
-                                      labelText: "Priority",
-                                      hintText: "choose priority",
-                                    ),
-                                  ),
-                                  onChanged: (value) {
-                                    controller.selectedPriority = value;
-                                  },
-                                ),
+                                height: Get.height * 0.01,
                               ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                width: 120,
-                                child: TextFormField(
-                                  //  controller: _Datecontroller,
-                                  cursorColor: Colors.white,
-                                  style: GoogleFonts.montserrat(
-                                    color: Colors.grey,
-                                    fontSize: 15,
-                                  ),
-                                  readOnly: true,
-                                  decoration: InputDecoration(
-                                    labelText: " Start Date",
-                                    suffixIcon: GestureDetector(
-                                      onTap: () {
-                                        controller.chooseDate();
-                                        // _selectDate(context);
-                                      },
-                                      child: Icon(
-                                        Icons.calendar_month_outlined,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Colors.black),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Colors.black),
-                                    ),
-                                    fillColor: Colors.black,
-                                    labelStyle: GoogleFonts.montserrat(
-                                      color: Colors.black,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                  initialValue:
-                                  controller.selectedDate.toString(),
-                                ),
-                              ),
-                              Container(
-                                width: 120,
-                                child: TextFormField(
-                                  onTap: () {},
-                                  //  controller: _Datecontroller,
-                                  cursorColor: Colors.white,
-                                  style: GoogleFonts.montserrat(
-                                    color: Colors.grey,
-                                    fontSize: 15,
-                                  ),
-                                  readOnly: true,
-                                  decoration: InputDecoration(
-                                    labelText: " End Date",
-                                    suffixIcon: GestureDetector(
-                                      onTap: () {
-                                        controller.chooseDate();
-                                      },
-                                      child: Icon(
-                                        Icons.calendar_month_outlined,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Colors.black),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide:
-                                      BorderSide(color: Colors.black),
-                                    ),
-                                    fillColor: Colors.black,
-                                    labelStyle: GoogleFonts.montserrat(
-                                      color: Colors.black,
-                                      fontSize: 10,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0, 10, 0, 20),
-                            child: TextFormField(
-                              // controller: _Titlecontroller,
-                              cursorColor: Colors.black,
-                              style: GoogleFonts.montserrat(
-                                color: Colors.black,
-                                fontSize: 15,
-                              ),
-                              decoration: InputDecoration(
-                                labelText: "Summary",
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide:
-                                  BorderSide(color: Colors.black),
-                                ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide:
-                                  BorderSide(color: Colors.black),
-                                ),
-                                fillColor: Colors.black,
-                                labelStyle: GoogleFonts.montserrat(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                ),
-                              ),
-                              validator: controller.requiredValidator,
-                              controller: controller.summarycontroller,
-                              onChanged: (value) {
-                                controller.tasksummary = value;
-                              },
-                            ),
-                          ),
-                              Obx(() => Column(
-                                  children: [
-                                CheckboxListTile(
-                                  title: const Text(
-                                    "Are you ready to create a task",
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  checkColor: Colors.white,
-                                  activeColor: Colors.blueGrey,
-                                  controlAffinity:
-                                  ListTileControlAffinity.leading,
-                                  checkboxShape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  value: controller.checkedValue.value == 1,
-                                  onChanged: (val) {
-                                    val ?? true
-                                        ? controller.checkedValue.value = 1
-                                        : controller.checkedValue.value = null;
-                                  },
-                                ),
-                              ])),
-                              SizedBox(height: Get.height * 0.02),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                      width: 140,
+                                      child: DropdownSearch<String>(
+                                        popupProps: PopupProps.menu(
+                                          showSelectedItems: true,
+                                          disabledItemFn: (String s) =>
+                                              s.startsWith('I'),
+                                        ),
+                                        items:
+                                            FireBase.userInfo['role'] == "admin"
+                                                ? controller.Alluser
+                                                : controller.userlist,
+                                        dropdownDecoratorProps:
+                                            DropDownDecoratorProps(
+                                          dropdownSearchDecoration:
+                                              InputDecoration(
+                                            labelText: "Asignee",
+                                            hintText: "select name",
+                                          ),
+                                        ),
+                                        onChanged: (value) {
+                                          controller.selecteduser = value;
+                                        },
+                                      )),
+                                  SizedBox(
+                                    width: 140,
+                                    child: DropdownSearch<String>(
+                                      popupProps: PopupProps.menu(
+                                        showSelectedItems: true,
+                                      ),
+                                      items: controller.priorityItems,
+                                      dropdownDecoratorProps:
+                                          DropDownDecoratorProps(
+                                        dropdownSearchDecoration:
+                                            InputDecoration(
+                                          labelText: "Priority",
+                                          hintText: "choose priority",
+                                        ),
+                                      ),
+                                      onChanged: (value) {
+                                        controller.selectedPriority = value;
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    width: 120,
+                                    child: TextFormField(
+                                      //  controller: _Datecontroller,
+                                      cursorColor: Colors.white,
+                                      style: GoogleFonts.montserrat(
+                                        color: Colors.grey,
+                                        fontSize: 15,
+                                      ),
+                                      readOnly: true,
+                                      decoration: InputDecoration(
+                                        labelText: " Start Date",
+                                        suffixIcon: GestureDetector(
+                                          onTap: () {
+                                            controller.chooseDate();
+                                            // _selectDate(context);
+                                          },
+                                          child: Icon(
+                                            Icons.calendar_month_outlined,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                        ),
+                                        fillColor: Colors.black,
+                                        labelStyle: GoogleFonts.montserrat(
+                                          color: Colors.black,
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                      initialValue:
+                                          controller.selectedDate.toString(),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 120,
+                                    child: TextFormField(
+                                      onTap: () {},
+                                      //  controller: _Datecontroller,
+                                      cursorColor: Colors.white,
+                                      style: GoogleFonts.montserrat(
+                                        color: Colors.grey,
+                                        fontSize: 15,
+                                      ),
+                                      readOnly: true,
+                                      decoration: InputDecoration(
+                                        labelText: " End Date",
+                                        suffixIcon: GestureDetector(
+                                          onTap: () {
+                                            controller.chooseDate();
+                                          },
+                                          child: Icon(
+                                            Icons.calendar_month_outlined,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black),
+                                        ),
+                                        fillColor: Colors.black,
+                                        labelStyle: GoogleFonts.montserrat(
+                                          color: Colors.black,
+                                          fontSize: 10,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 10, 0, 20),
+                                child: TextFormField(
+                                  // controller: _Titlecontroller,
+                                  cursorColor: Colors.black,
+                                  style: GoogleFonts.montserrat(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                  ),
+                                  decoration: InputDecoration(
+                                    labelText: "Summary",
+                                    enabledBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black),
+                                    ),
+                                    fillColor: Colors.black,
+                                    labelStyle: GoogleFonts.montserrat(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  validator: controller.requiredValidator,
+                                  controller: controller.summarycontroller,
+                                  onChanged: (value) {
+                                    controller.tasksummary = value;
+                                  },
+                                ),
+                              ),
+                              Obx(() =>                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          elevation: 0,
+                                          backgroundColor: Colors.blueGrey[200],
+                                          padding: EdgeInsets.symmetric(
+                                            horizontal: 10,
+                                          )),
+                                      onPressed: () {
+                                        controller.AttachFile().then((value) => controller.fileAttached.value = true);
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.attachment_outlined),
+                                          SizedBox(width: Get.width * 0.02),
+                                          Text("Attach the file"),
+                                        ],
+                                      )),
+                                  SizedBox(width: 15,),
+                                  controller.fileAttached.value ?
+                                  Icon(Icons.done_outline_rounded,
+                                    color: Colors.green,
+                                    shadows: [Shadow(color: Colors.green,blurRadius: 1.5)],):Text("")
+                                ],
+                              )),
+                              Container(
+                                margin: EdgeInsets.only(left: Get.width * 0.055),
+                                child: Column(children: [
+                                  Obx(() => CheckboxListTile(
+                                        title: const Text(
+                                          "Are you ready to create a task",
+                                          style: TextStyle(
+                                              color: Colors.black54,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        checkColor: Colors.white,
+                                        activeColor: Colors.blueGrey,
+                                        controlAffinity:
+                                            ListTileControlAffinity.leading,
+                                        checkboxShape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        value: controller.checkedValue.value == 1,
+                                        onChanged: (val) {
+                                          val ?? true
+                                              ? controller.checkedValue.value = 1
+                                              : controller.checkedValue.value = null;
+                                        },
+                                      )),
+                                ]),
+                              ),
+                              SizedBox(height: Get.height * 0.01),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SizedBox(
                                     width: Get.width * 0.4,
                                     child: CustomButtonCancel(
                                       title: "CANCEL",
                                       onPress: () {
-                                        Get.back();
+                                        controller.titlecontroller.clear();
+                                        controller.desccontroller.clear();
+                                        controller.summarycontroller.clear();
                                       },
                                     ),
                                   ),
@@ -399,22 +434,18 @@ class CreateTaskView extends GetView<CreateTaskController> {
                                     child: CustomButton(
                                       title: "CREATE",
                                       onPress: () {
-                                        controller.gotoCreateTask(context);
+                                        if (controller.pickedFile == null) {
+                                          controller.gotoCreateTask(context);
+                                        } else {
+                                          controller.uploadFile().then((url) {
+                                            controller.gotoCreateTask(
+                                                context, url);
+                                            controller.pickedFile = null;
+                                            controller.fileAttached.value = false;
+                                          });
+                                        }
                                       },
                                     ),
-
-                                    // ElevatedButton(
-                                    //   style: ElevatedButton.styleFrom(
-                                    //       backgroundColor: Colors.indigo,
-                                    //       shape: BeveledRectangleBorder()),
-                                    //   child: Text("CREATE TASK",
-                                    //       style: TextStyle(
-                                    //           color: Colors.white,
-                                    //           fontSize: Get.height * 0.025)),
-                                    //   onPressed: () {
-                                    //     controller.gotoCreateTask(context);
-                                    //   },
-                                    // ),
                                   ),
                                 ],
                               ),
@@ -424,12 +455,10 @@ class CreateTaskView extends GetView<CreateTaskController> {
                   )
                 ],
               ),
-            ),)
-          ,
-        )
-        ,
-      )
-      ,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

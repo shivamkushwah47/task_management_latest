@@ -240,7 +240,7 @@ class FireBase {
 
   //create task function
   static Future createTask(context, title, desc, asignee, priority,
-      summarry) async {
+      summarry,url) async {
     var id = DateTime
         .now()
         .millisecondsSinceEpoch
@@ -257,6 +257,7 @@ class FireBase {
       'id': id,
       'report': userInfo["name"],
       'createDate': date,
+      'url': url
     };
     var id2 = DateTime
         .now()
