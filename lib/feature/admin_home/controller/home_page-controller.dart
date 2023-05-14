@@ -33,6 +33,12 @@ class HomePageController extends GetxController {
     ).show();
   }
 
+  var projectList = ["ubiAttendance","ubiSales","ubiAirport","ubiSchool"];
+  var selectedProject;
+  final selected = "ubiAttendance".obs;
+  void setSelected(String value){
+    selected.value = value;
+  }
   Logout() async {
     final pref = await SharedPreferences.getInstance();
     await pref.clear().then((value) {
