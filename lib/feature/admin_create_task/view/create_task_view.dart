@@ -99,14 +99,6 @@ class CreateTaskView extends GetView<CreateTaskController> {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(
-                            height: Get.height * 0.03,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [],
-                            ),
-                          ),
                           Padding(
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
@@ -174,9 +166,9 @@ class CreateTaskView extends GetView<CreateTaskController> {
                     ),
                   ),
                   Positioned(
-                    top: Get.height * .25,
+                    top: Get.height * .24,
                     width: Get.width * 1,
-                    height: Get.height * .56,
+                    height: Get.height * .6,
                     child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(width: 2, color: Colors.blue),
@@ -190,15 +182,13 @@ class CreateTaskView extends GetView<CreateTaskController> {
                               horizontal: Get.width * 0.04),
                           child: Column(
                             children: [
-                              SizedBox(
-                                height: Get.height * 0.01,
-                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   SizedBox(
-                                      width: 140,
+                                      width: Get.width*0.35,
+                                      height: Get.width*0.16,
                                       child: DropdownSearch<String>(
                                         popupProps: PopupProps.menu(
                                           showSelectedItems: true,
@@ -221,26 +211,23 @@ class CreateTaskView extends GetView<CreateTaskController> {
                                           controller.selecteduser = value;
                                         },
                                       )),
-                                  SizedBox(
-                                    width: 140,
-                                    child: DropdownSearch<String>(
-                                      popupProps: PopupProps.menu(
-                                        showSelectedItems: true,
-                                      ),
-                                      items: controller.priorityItems,
-                                      dropdownDecoratorProps:
-                                          DropDownDecoratorProps(
-                                        dropdownSearchDecoration:
-                                            InputDecoration(
-                                          labelText: "Priority",
-                                          hintText: "choose priority",
-                                        ),
-                                      ),
-                                      onChanged: (value) {
-                                        controller.selectedPriority = value;
+                                  Obx(() =>SizedBox(
+                                    width: Get.width*0.35,
+                                    height: Get.width*0.16,
+                                    child: DropdownButton(
+                                      isExpanded: true,
+                                      items: controller.priorityItems
+                                          .map((String item) =>
+                                          DropdownMenuItem<String>(child: Text(item,style: TextStyle(color: Colors.grey)), value: item.toString()))
+                                          .toList(),
+                                      onChanged: (newValue) {
+                                        print("previous ${controller.selectedPriority}");
+                                        print("selected $newValue");
+                                        controller.selectedPriority.value = newValue.toString();
                                       },
+                                      value:  controller.selectedPriority.toString(),
                                     ),
-                                  ),
+                                  )),
                                 ],
                               ),
                               Row(
@@ -248,7 +235,8 @@ class CreateTaskView extends GetView<CreateTaskController> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    width: 120,
+                                    width: Get.width*.35,
+                                    height: Get.width*.16,
                                     child: TextFormField(
                                       //  controller: _Datecontroller,
                                       cursorColor: Colors.white,
@@ -288,7 +276,8 @@ class CreateTaskView extends GetView<CreateTaskController> {
                                     ),
                                   ),
                                   Container(
-                                    width: 120,
+                                    width: Get.width*.35,
+                                    height: Get.width*.16,
                                     child: TextFormField(
                                       onTap: () {},
                                       //  controller: _Datecontroller,
@@ -329,7 +318,7 @@ class CreateTaskView extends GetView<CreateTaskController> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    0, 10, 0, 20),
+                                    0, 5, 0, 8),
                                 child: TextFormField(
                                   // controller: _Titlecontroller,
                                   cursorColor: Colors.black,
@@ -360,7 +349,8 @@ class CreateTaskView extends GetView<CreateTaskController> {
                                   },
                                 ),
                               ),
-                              Obx(() =>                               Row(
+                              Obx(() =>
+                                  Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   ElevatedButton(
@@ -380,7 +370,7 @@ class CreateTaskView extends GetView<CreateTaskController> {
                                           Text("Attach the file"),
                                         ],
                                       )),
-                                  SizedBox(width: 15,),
+                                  SizedBox(width: 10,),
                                   controller.fileAttached.value ?
                                   Icon(Icons.done_outline_rounded,
                                     color: Colors.green,
@@ -388,7 +378,6 @@ class CreateTaskView extends GetView<CreateTaskController> {
                                 ],
                               )),
                               Container(
-                                margin: EdgeInsets.only(left: Get.width * 0.055),
                                 child: Column(children: [
                                   Obx(() => CheckboxListTile(
                                         title: const Text(
@@ -413,7 +402,7 @@ class CreateTaskView extends GetView<CreateTaskController> {
                                       )),
                                 ]),
                               ),
-                              SizedBox(height: Get.height * 0.01),
+                              SizedBox(height: Get.height * 0.005),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,

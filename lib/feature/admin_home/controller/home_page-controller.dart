@@ -33,8 +33,7 @@ class HomePageController extends GetxController {
     ).show();
   }
 
-  var projectList = ["ubiAttendance","ubiSales","ubiAirport","ubiSchool"];
-  var selectedProject;
+  var projectList = ["ubiAttendance","ubiSales","ubiAirpor","ubiSchool"];
   final selected = "ubiAttendance".obs;
   void setSelected(String value){
     selected.value = value;

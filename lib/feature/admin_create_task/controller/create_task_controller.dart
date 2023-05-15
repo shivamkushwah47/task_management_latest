@@ -103,6 +103,7 @@ class CreateTaskController extends GetxController {
     'High',
     'Medium',
   ];
+  RxString selectedPriority = "Low".obs;
   var taskTitle;
   var taskDesc;
   var tasksummary;
@@ -112,7 +113,6 @@ class CreateTaskController extends GetxController {
   TextEditingController titlecontroller = TextEditingController();
 
   String? selecteduser;
-  String? selectedPriority;
   List<String> Alluser = [];
   List<String> userlist = [];
 
