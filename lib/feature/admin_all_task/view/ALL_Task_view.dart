@@ -5,6 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:get/utils.dart';
+import 'package:intl/intl.dart';
 import 'package:task_management_app/core/firebase/firebase.dart';
 import 'package:task_management_app/feature/admin_all_task/controller/All_Task_controller.dart';
 
@@ -13,47 +14,6 @@ class AllTaskView extends GetView<AllTaskController> {
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
       backgroundColor: Colors.white,
-          // drawer: Drawer(
-          //   child: ListView(
-          //     padding: EdgeInsets.zero,
-          //     children: [
-          //       UserAccountsDrawerHeader(
-          //         decoration: BoxDecoration(
-          //             gradient: LinearGradient(
-          //                 begin: Alignment.bottomLeft,
-          //                 end: Alignment.topRight,
-          //                 colors: <Color>[Colors.indigo, Colors.blue])),
-          //         accountName: Text(FireBase.userInfo['name']),
-          //         accountEmail: Text(FireBase.userInfo['email']),
-          //         currentAccountPicture: CircleAvatar(
-          //           backgroundImage:
-          //               AssetImage('assets/Image/Profileimage.png'),
-          //         ),
-          //       ),
-          //       ListTile(
-          //         onTap: () {
-          //           Get.toNamed(Routes.Notification);
-          //         },
-          //         leading: Icon(Icons.notifications),
-          //         title: Text("Notification"),
-          //       ),
-          //       ListTile(
-          //         onTap: () {
-          //           controller.deleteUser(FireBase.userInfo['id'], context);
-          //         },
-          //         leading: Icon(Icons.lock),
-          //         title: Text("Delete Account"),
-          //       ),
-          //       ListTile(
-          //         onTap: () {
-          //           controller.Logout();
-          //         },
-          //         leading: Icon(Icons.logout),
-          //         title: Text("Log out"),
-          //       )
-          //     ],
-          //   ),
-          // ),
           appBar: CalendarAppBar(
             white: Colors.white,
             black: Colors.black,
@@ -61,8 +21,8 @@ class AllTaskView extends GetView<AllTaskController> {
             fullCalendar: false,
             selectedDate: DateTime.now(),
             onDateChanged: (value) {
-              controller.selectedDate = value;
-              print(value);
+               controller.selectedDate.value = DateFormat('yyyy-MM-dd').format(value).toString();
+              print(controller.selectedDate);
             },
             firstDate: DateTime.now().subtract(Duration(days: 140)),
             lastDate: DateTime.now(),
@@ -92,11 +52,13 @@ class AllTaskView extends GetView<AllTaskController> {
                   ),
                 ),
                 StreamBuilder(
-                  stream: FireBase.userInfo['role'] == "admin"
-                      ? controller.allTaskSnapshota
-                      : controller.allTaskSnapshotu,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                  stream: FireBase.userInfo['role'] == "admin" ? FirebaseFirestore.instance
+                      .collection("mytask/mytask/alltask").where("createDate", isEqualTo: controller.selectedDate.value)
+                      .snapshots() : FirebaseFirestore.instance
+                      .collection("mytask/mytask/alltask")
+                      .where("asignee", isEqualTo: FireBase.userInfo['name']).where("createDate", isEqualTo: controller.selectedDate.value)
+                      .snapshots(),
+                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.hasError) {
                       return const Text('Something went wrong');
                     }
@@ -105,6 +67,7 @@ class AllTaskView extends GetView<AllTaskController> {
                     }
                     if (snapshot.connectionState == ConnectionState.active) {
                       if (snapshot.hasData && snapshot.data != null) {
+                        print(controller.selectedDate.value);
                         print("AllTaskController.selectedDate");
                         return Expanded(
                           child: ListView.builder(

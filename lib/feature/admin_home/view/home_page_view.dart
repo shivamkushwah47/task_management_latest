@@ -1,4 +1,3 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
@@ -129,25 +128,31 @@ class HomePageView extends GetView<HomePageController> {
                                     color: Colors.black54,
                                     fontSize: Get.height * 0.03,
                                     fontWeight: FontWeight.w500)),
-                            Obx(() =>SizedBox(
-                              width: 140,
-                              height: 50,
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton(
-                                  isExpanded: true,
-                                  items: controller.projectList
-                                      .map((String item) =>
-                                      DropdownMenuItem<String>(child: Text(item,style: TextStyle(color: Colors.grey)), value: item))
-                                      .toList(),
-                                  onChanged: (newValue) {
-                                    print("previous ${controller.selected}");
-                                    print("selected $newValue");
-                                    controller.selected.value = newValue.toString();
-                                  },
-                                  value:  controller.selected.toString(),
-                                ),
-                              ),
-                            )),
+                            Obx(() => SizedBox(
+                                  width: 140,
+                                  height: 50,
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton(
+                                      isExpanded: true,
+                                      items: controller.projectList
+                                          .map((String item) =>
+                                              DropdownMenuItem<String>(
+                                                  child: Text(item,
+                                                      style: TextStyle(
+                                                          color: Colors.grey)),
+                                                  value: item))
+                                          .toList(),
+                                      onChanged: (newValue) {
+                                        print(
+                                            "previous ${controller.selected}");
+                                        print("selected $newValue");
+                                        controller.selected.value =
+                                            newValue.toString();
+                                      },
+                                      value: controller.selected.toString(),
+                                    ),
+                                  ),
+                                )),
                           ],
                         ),
                       ),
@@ -332,7 +337,7 @@ class HomePageView extends GetView<HomePageController> {
                         children: [
                           Text('All Task',
                               style: TextStyle(
-                                color: Colors.black54,
+                                  color: Colors.black54,
                                   fontSize: Get.height * 0.03,
                                   fontWeight: FontWeight.bold)),
                         ],
@@ -344,20 +349,25 @@ class HomePageView extends GetView<HomePageController> {
                         decoration: BoxDecoration(
                             color: Colors.grey,
                             // borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
-                          borderRadius: BorderRadius.all(Radius.circular(20))
-                        ),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
                         child: Column(
                           children: [
                             Container(
                               height: 60,
                               decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.only(topLeft: Radius.circular(20),topRight: Radius.circular(20))
-                              ),
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20))),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Text("UBI SALES TASK",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16)),
+                                  Text("UBI SALES TASK",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16)),
                                 ],
                               ),
                             ),
@@ -385,7 +395,8 @@ class HomePageView extends GetView<HomePageController> {
                                                 Colors.blueAccent
                                               ]),
                                           // color: Colors.blueAccent,
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         child: Row(children: [
                                           CircleAvatar(
@@ -398,9 +409,9 @@ class HomePageView extends GetView<HomePageController> {
                                           ),
                                           Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                                MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Text(
                                                 'Todo',
@@ -416,24 +427,30 @@ class HomePageView extends GetView<HomePageController> {
                                                     "10 Task",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: Get.height * 0.015,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
+                                                          Get.height * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                   Text(
                                                     "-",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: Get.height * 0.015,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
+                                                          Get.height * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                   Text(
                                                     "1 Started",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: Get.height * 0.015,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
+                                                          Get.height * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                 ],
@@ -474,7 +491,8 @@ class HomePageView extends GetView<HomePageController> {
                                                 Colors.blue
                                               ]),
                                           // color: Colors.blueAccent,
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         //
                                         // decoration: BoxDecoration(
@@ -493,9 +511,9 @@ class HomePageView extends GetView<HomePageController> {
                                           ),
                                           Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                                MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Text(
                                                 'In Progress',
@@ -511,24 +529,30 @@ class HomePageView extends GetView<HomePageController> {
                                                     "10 Task",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: Get.height * 0.015,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
+                                                          Get.height * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                   Text(
                                                     "-",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: Get.height * 0.015,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
+                                                          Get.height * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                   Text(
                                                     "8 In Progress",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: Get.height * 0.015,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
+                                                          Get.height * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                 ],
@@ -569,7 +593,8 @@ class HomePageView extends GetView<HomePageController> {
                                                 Colors.yellow
                                               ]),
                                           // color: Colors.blueAccent,
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         child: Row(children: [
                                           CircleAvatar(
@@ -582,9 +607,9 @@ class HomePageView extends GetView<HomePageController> {
                                           ),
                                           Column(
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                                MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Text(
                                                 'Done',
@@ -600,24 +625,30 @@ class HomePageView extends GetView<HomePageController> {
                                                     "10 Task",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: Get.height * 0.015,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
+                                                          Get.height * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                   Text(
                                                     "-",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: Get.height * 0.015,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
+                                                          Get.height * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                   Text(
                                                     "8 Done",
                                                     style: TextStyle(
                                                       color: Colors.white,
-                                                      fontSize: Get.height * 0.015,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontSize:
+                                                          Get.height * 0.015,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                 ],
@@ -631,11 +662,15 @@ class HomePageView extends GetView<HomePageController> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 30,)
+                            SizedBox(
+                              height: 30,
+                            )
                           ],
                         ),
                       ),
-                      SizedBox(height: 70,)
+                      SizedBox(
+                        height: 70,
+                      )
                     ],
                   ),
                 ),

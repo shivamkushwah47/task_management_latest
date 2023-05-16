@@ -1,20 +1,21 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_management_app/core/firebase/firebase.dart';
 import 'package:task_management_app/core/routes.dart';
 
 class AllTaskController extends GetxController {
-  var selectedDate = "";
+  RxString selectedDate = "".obs;
 
-  static var currDate = DateTime.now();
-  var date = '${currDate.year}-${currDate.month}-${currDate.day}';
+  // var date = '${currDate.year}-${currDate.month}-${currDate.day}';
 
-  Stream<QuerySnapshot<Map<String, dynamic>>> allTaskSnapshota =
-      FirebaseFirestore.instance
-          .collection("mytask/mytask/alltask")
-          .snapshots();
+  // Stream<QuerySnapshot<Map<String, dynamic>>> allTaskSnapshota =
+  // FirebaseFirestore.instance
+  //     .collection("mytask/mytask/alltask").where("createDate", isEqualTo: selectedDate)
+  //     .snapshots();
+
   Stream<QuerySnapshot<Map<String, dynamic>>> allTaskSnapshotu =
       FirebaseFirestore.instance
           .collection("mytask/mytask/alltask")
@@ -41,4 +42,11 @@ class AllTaskController extends GetxController {
       Get.offAllNamed(Routes.login);
     });
   }
+
+  @override
+  void onInit() {
+    super.onInit();
+    selectedDate.value = DateFormat('yyyy-MM-dd').format(DateTime.now()).toString();
+  }
+
 }

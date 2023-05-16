@@ -34,7 +34,7 @@ class DoNotify {
   }
   static alertMsg(msg) {
     return Get.snackbar(
-      "AlertText".tr,
+      "Alert",
       msg,
       icon: const Icon(Icons.warning_amber_outlined, color: Colors.white),
       snackPosition: SnackPosition.BOTTOM,

@@ -7,6 +7,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:task_management_app/core/components/loader.dart';
 import 'package:task_management_app/core/components/snackbar.dart';
@@ -245,9 +246,9 @@ class FireBase {
         .now()
         .millisecondsSinceEpoch
         .toString();
-    var currDate = DateTime.now();
+    var currDate = DateFormat('yyyy-MM-ddTHH:mm:ss').format(DateTime.now());
 
-    String date = '${currDate.day}-${currDate.month}-${currDate.year}';
+    // String date = '${currDate.day}-${currDate.month}-${currDate.year}';
     Map<String, dynamic> CreateTaskData = {
       "title": title,
       "description": desc,
@@ -256,7 +257,7 @@ class FireBase {
       "summary": summarry,
       'id': id,
       'report': userInfo["name"],
-      'createDate': date,
+      'createDate': currDate,
       'url': url
     };
     var id2 = DateTime
