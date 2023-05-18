@@ -171,7 +171,7 @@ class CreateTaskView extends GetView<CreateTaskController> {
                     height: Get.height * .6,
                     child: Container(
                         decoration: BoxDecoration(
-                          border: Border.all(width: 2, color: Colors.blue),
+                          border: Border.all(width: 1, color: Colors.blue),
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(30),
                               topRight: Radius.circular(30)),

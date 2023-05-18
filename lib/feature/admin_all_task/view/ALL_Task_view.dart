@@ -13,7 +13,7 @@ class AllTaskView extends GetView<AllTaskController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-      backgroundColor: Colors.white,
+          backgroundColor: Colors.white,
           appBar: CalendarAppBar(
             white: Colors.white,
             black: Colors.black,
@@ -21,7 +21,8 @@ class AllTaskView extends GetView<AllTaskController> {
             fullCalendar: false,
             selectedDate: DateTime.now(),
             onDateChanged: (value) {
-               controller.selectedDate.value = DateFormat('yyyy-MM-dd').format(value).toString();
+              controller.selectedDate.value =
+                  DateFormat('yyyy-MM-dd').format(value).toString();
               print(controller.selectedDate);
             },
             firstDate: DateTime.now().subtract(Duration(days: 140)),
@@ -33,7 +34,7 @@ class AllTaskView extends GetView<AllTaskController> {
               children: [
                 // SizedBox(
                 //   height: 230,
-                 /* child:*/
+                /* child:*/
                 // ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 8),
@@ -51,53 +52,71 @@ class AllTaskView extends GetView<AllTaskController> {
                     ],
                   ),
                 ),
-                StreamBuilder(
-                  stream: FireBase.userInfo['role'] == "admin" ? FirebaseFirestore.instance
-                      .collection("mytask/mytask/alltask").where("createDate", isEqualTo: controller.selectedDate.value)
-                      .snapshots() : FirebaseFirestore.instance
-                      .collection("mytask/mytask/alltask")
-                      .where("asignee", isEqualTo: FireBase.userInfo['name']).where("createDate", isEqualTo: controller.selectedDate.value)
-                      .snapshots(),
-                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.hasError) {
-                      return const Text('Something went wrong');
-                    }
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                    if (snapshot.connectionState == ConnectionState.active) {
-                      if (snapshot.hasData && snapshot.data != null) {
-                        print(controller.selectedDate.value);
-                        print("AllTaskController.selectedDate");
-                        return Expanded(
-                          child: ListView.builder(
-                              itemCount: snapshot.data!.docs.length,
-                              itemBuilder: (context, index) {
-                                Map<String, dynamic> allTaskmap =
-                                    snapshot.data!.docs[index].data()
-                                        as Map<String, dynamic>;
-
-                                return Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: ListTile(
-                                    tileColor: Colors.white,
-                                    title: Text(allTaskmap["title"]),
-                                    subtitle: Text(allTaskmap["description"]),
-                                    trailing: Icon(Icons.more_vert),
-                                  ),
-                                );
-                              }),
-                        );
-                      } else {
-                        return Text(
-                          "No Data",
-                          style: TextStyle(color: Colors.blue),
-                        );
+                Container(
+                  child: StreamBuilder(
+                    stream: FireBase.userInfo['role'] == "admin"
+                        ? FirebaseFirestore.instance
+                            .collection("mytask/mytask/alltask")
+                            .where("createDate",
+                                isEqualTo: controller.selectedDate.value)
+                            .snapshots()
+                        : FirebaseFirestore.instance
+                            .collection("mytask/mytask/alltask")
+                            .where("asignee",
+                                isEqualTo: FireBase.userInfo['name'])
+                            .where("createDate",
+                                isEqualTo: controller.selectedDate.value)
+                            .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return const Text('Something went wrong');
                       }
-                    } else {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                  },
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      if (snapshot.connectionState == ConnectionState.active) {
+                        if (snapshot.hasData && snapshot.data != null) {
+                          print(controller.selectedDate.value);
+                          print("AllTaskController.selectedDate");
+                          if(snapshot.data!.docs.length != 0){
+                          return Expanded(
+                            child: ListView.builder(
+                                itemCount: snapshot.data!.docs.length,
+                                itemBuilder: (context, index) {
+                                  Map<String, dynamic> allTaskmap =
+                                      snapshot.data!.docs[index].data()
+                                          as Map<String, dynamic>;
+
+                                  return Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: ListTile(
+                                      tileColor: Colors.white,
+                                      title: Text(allTaskmap["title"]),
+                                      subtitle: Text(allTaskmap["description"]),
+                                      trailing: Icon(Icons.more_vert),
+                                    ),
+                                  );
+                                }),
+                          );
+                          }
+                          return Column(
+                            children: [
+                              SizedBox(height: Get.height*0.1,),
+                              Image.asset("assets/Image/no-task-pending.png",width: Get.width*0.6,),
+                            ],
+                          );
+                        } else {
+                          return Text(
+                            "No Data",
+                            style: TextStyle(color: Colors.blue),
+                          );
+                        }
+                      } else {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  ),
                 ),
               ],
             ),
