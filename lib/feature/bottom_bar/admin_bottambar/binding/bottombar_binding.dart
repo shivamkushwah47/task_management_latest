@@ -9,7 +9,7 @@ import 'package:task_management_app/feature/register/Controller/register_cotroll
 class BottombarBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put(BottombarController());
+    Get.put(BottomBarController());
     Get.put(RegisterController());
     Get.put(ForgotController());
     Get.put(CreateTaskController());

@@ -12,7 +12,7 @@ import 'package:task_management_app/feature/admin_team_member/view/team_page_vie
 import 'package:task_management_app/feature/bottom_bar/admin_bottambar/controller/bottombar_controller.dart';
 import 'package:task_management_app/feature/setting/view/setting_view.dart';
 
-class BottombarView extends GetView<BottombarController> {
+class BottombarView extends GetView<BottomBarController> {
   BottombarView({super.key});
   RxBool returnValue = true.obs;
   @override
@@ -108,7 +108,7 @@ List<PersistentBottomNavBarItem> _navBarsItems() {
   return [
     PersistentBottomNavBarItem(
       icon: Icon(Icons.home),
-      title: ("home"),
+      title: ("Home"),
       activeColorPrimary: GlobalColor.customMaterialColor,
       inactiveColorPrimary: Color(0xff9F9F9F),
     ),
@@ -139,13 +139,13 @@ List<PersistentBottomNavBarItem> _navBarsItems() {
     ),
     PersistentBottomNavBarItem(
       icon: Icon(Icons.people_sharp),
-      title: ("team"),
+      title: ("Team"),
       activeColorPrimary: GlobalColor.customMaterialColor,
       inactiveColorPrimary: Color(0xff9F9F9F),
     ),
     PersistentBottomNavBarItem(
       icon: Icon(Icons.settings),
-      title: ("setting"),
+      title: ("Settings"),
       activeColorPrimary: GlobalColor.customMaterialColor,
       inactiveColorPrimary: Color(0xff9F9F9F),
     ),

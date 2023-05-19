@@ -7,7 +7,7 @@ import 'package:task_management_app/feature/admin_home/view/home_page_view.dart'
 import 'package:task_management_app/feature/admin_team_member/view/team_page_view.dart';
 import 'package:task_management_app/feature/setting/view/setting_view.dart';
 
-class BottombarController extends GetxController {
+class BottomBarController extends GetxController {
 
   RxBool  checkConn = false.obs;
   PersistentTabController controller = PersistentTabController(initialIndex: 0);
