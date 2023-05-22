@@ -7,5 +7,6 @@ class GlobalColor{
   static Color blc54 = Colors.black54;
   static Color blugrey = Colors.blueGrey;
   static Color grey = Colors.grey;
+  static Color white = Colors.white;
 
 }

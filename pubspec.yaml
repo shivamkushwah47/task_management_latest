@@ -71,6 +71,7 @@ dependencies:
   file_picker: ^5.3.0
   firebase_storage: ^11.2.0
   persistent_bottom_nav_bar: ^5.0.2
+  shimmer: ^2.0.0
 
 
 
