@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:task_management_app/core/components/loader.dart';
 import 'package:task_management_app/core/firebase/firebase.dart';
+import 'package:task_management_app/core/global/colors.dart';
 import 'package:task_management_app/core/routes.dart';
 import 'package:task_management_app/feature/admin_team_member/controller/team_page_controller.dart';
 
@@ -165,20 +166,30 @@ class TeamView extends GetView<TeamController> {
                                   if (snapshot.hasData &&
                                       snapshot.data != null) {
                                     return Expanded(
-                                      child: ListView.builder(
+                                      child: ListView.separated(
+                                        separatorBuilder: (context, index) {
+                                          return Divider(height: 0,);
+                                        },
                                           itemCount: snapshot.data!.docs.length,
                                           itemBuilder: (context, index) {
-                                            Map<String, dynamic> usersmap =
-                                                snapshot.data!.docs[index]
-                                                        .data()
-                                                    as Map<String, dynamic>;
+                                            Map<String, dynamic> usersmap = snapshot.data!.docs[index].data() as Map<String, dynamic>;
 
+                                            var fullName = usersmap["name"].toString();
+                                            var nameList = fullName.split(" ");
+
+                                            var lastChar;
+                                            var firstChar = nameList.first.substring(0,1).capitalize;
+                                            if(nameList.length > 1){
+                                              lastChar = nameList.last.substring(0,1).capitalize;
+                                            }else{
+                                              lastChar = "";
+                                            }
                                             return ListTile(
                                               isThreeLine: true,
                                               leading: CircleAvatar(
-                                                backgroundColor: Colors.blue,
-                                                child: Text(
-                                                    (index + 1).toString()),
+                                                radius: Get.width*0.065,
+                                                backgroundColor: controller.nameColor[index].value,
+                                                child: Text(firstChar! + lastChar,style: TextStyle(color: GlobalColor.white)),
                                               ),
                                               tileColor: Colors.grey,
                                               onTap: () {},

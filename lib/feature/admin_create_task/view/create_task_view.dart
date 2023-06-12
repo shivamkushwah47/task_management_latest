@@ -361,7 +361,7 @@ class CreateTaskView extends GetView<CreateTaskController> {
                                             horizontal: 10,
                                           )),
                                       onPressed: () {
-                                        controller.AttachFile().then((value) => controller.fileAttached.value = true);
+                                        controller.AttachFile().then((value) => value == null ? controller.fileAttached.value = false:controller.fileAttached.value = true);
                                       },
                                       child: Row(
                                         children: [

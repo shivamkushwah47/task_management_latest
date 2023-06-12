@@ -160,139 +160,124 @@ class HomePageView extends GetView<HomePageController> {
                         ),
                       ),
                       SizedBox(
-                        height: Get.height*0.25,
-                        child: ScrollGlowRemover(
-                          child:ListView.builder(
-                            itemCount: 10,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-
-                              return controller.loader.value ?
-                                Shimmer.fromColors(
-                                baseColor:
-                                const Color(0xFFEBEBF4),
-                                highlightColor:
-                                const Color(0xFFF4F4F4),
-                                child: Container(
-                                  height: 250,
-                                  width: Get.width * 0.51,
-                                  margin: const EdgeInsets
-                                      .symmetric(
-                                      horizontal: 10),
-                                  decoration: BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius:
-                                    BorderRadius.circular(
-                                        10),
-                                  ),
-                                ),
-                              ):Container(
-                                height: 250,
-                                width:
-                                Get.width * 0.51,
-                                margin:
-                                const EdgeInsets
-                                    .symmetric(
-                                    horizontal:
-                                    10),
-                                decoration:
-                                BoxDecoration(
-                                  borderRadius:
-                                  BorderRadius
-                                      .circular(
-                                      10),
-                                  image:
-                                  DecorationImage(
-                                    image: AssetImage("assets/Image/1onboarding.png"),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                child: Container(
-                                  decoration:
-                                  BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(
-                                        10),
-                                    backgroundBlendMode:
-                                    BlendMode
-                                        .darken,
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          GlobalColor.customMaterialColor.withOpacity(0.5),
-                                          Colors.blue.withOpacity(0.3)
-                                        ])
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                    const EdgeInsets
-                                        .all(8.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment
-                                          .start,
-                                      mainAxisAlignment:
-                                      MainAxisAlignment
-                                          .spaceBetween,
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "project name",
-                                              style: TextStyle(
-                                                  color:
-                                                  GlobalColor.white,
-                                                  height:
-                                                  1.1,
-                                                  fontSize:
-                                                  Get.width *
-                                                      0.06),
-                                            ),
-                                            SizedBox(height: Get.height*0.008,),
-                                            Text("your projects",
-                                                overflow:
-                                                TextOverflow
-                                                    .ellipsis,
-                                                maxLines:
-                                                3,
-                                                style: TextStyle(
-                                                    color:
-                                                    GlobalColor.white,
-                                                    fontWeight: FontWeight
-                                                        .w500,
-                                                    fontSize:
-                                                    Get.width * 0.035)),
-                                          ],
+                          height: Get.height * 0.25,
+                          child: ScrollGlowRemover(
+                            child: ListView.builder(
+                              itemCount: 10,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return controller.loader.value
+                                    ? Shimmer.fromColors(
+                                        baseColor: const Color(0xFFEBEBF4),
+                                        highlightColor: const Color(0xFFF4F4F4),
+                                        child: Container(
+                                          height: 250,
+                                          width: Get.width * 0.51,
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          decoration: BoxDecoration(
+                                            color: Colors.red,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
                                         ),
-
-                                        Column(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(10)
-                                              ),
-                                              child: LinearProgressIndicator(
-                                                value: 0.5,
-                                                backgroundColor: Colors.white70,
-                                                minHeight: Get.height * 0.013,
-                                                color: Colors.indigo,
-                                              ),
+                                      )
+                                    : Container(
+                                        height: 250,
+                                        width: Get.width * 0.51,
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                "assets/Image/1onboarding.png"),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              backgroundBlendMode:
+                                                  BlendMode.darken,
+                                              gradient: LinearGradient(colors: [
+                                                GlobalColor.customMaterialColor
+                                                    .withOpacity(0.5),
+                                                Colors.blue.withOpacity(0.3)
+                                              ])),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "project name",
+                                                      style: TextStyle(
+                                                          color:
+                                                              GlobalColor.white,
+                                                          height: 1.1,
+                                                          fontSize:
+                                                              Get.width * 0.06),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          Get.height * 0.008,
+                                                    ),
+                                                    Text("your projects",
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        maxLines: 3,
+                                                        style: TextStyle(
+                                                            color: GlobalColor
+                                                                .white,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize:
+                                                                Get.width *
+                                                                    0.035)),
+                                                  ],
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      10)),
+                                                      child:
+                                                          LinearProgressIndicator(
+                                                        value: 0.5,
+                                                        backgroundColor:
+                                                            Colors.white70,
+                                                        minHeight:
+                                                            Get.height * 0.013,
+                                                        color: Colors.indigo,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 15,
+                                                    )
+                                                  ],
+                                                )
+                                              ],
                                             ),
-                                            SizedBox(
-                                              height: 15,
-                                            )
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-
-                            },),
-                        )
-                      ),
+                                          ),
+                                        ),
+                                      );
+                              },
+                            ),
+                          )),
                       // Row(
                       //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //   children: [

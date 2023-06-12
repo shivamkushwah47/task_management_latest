@@ -56,7 +56,7 @@ class RegisterController extends GetxController {
           desc: 'Check internet connection',
         ).show();
       } else {
-        FireBase.addUser(context, name, email, phone, password, "admin");
+        FireBase.addUser(context, name.trim(), email.trim(), phone.trim(), password.trim(), "admin");
       }
     }
   }
