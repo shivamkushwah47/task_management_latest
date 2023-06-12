@@ -360,6 +360,7 @@ class CreateTaskView extends GetView<CreateTaskController> {
                                           padding: EdgeInsets.symmetric(
                                             horizontal: 10,
                                           )),
+
                                       onPressed: () {
                                         controller.AttachFile().then((value) => value == null ? controller.fileAttached.value = false:controller.fileAttached.value = true);
                                       },
